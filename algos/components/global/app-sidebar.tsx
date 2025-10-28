@@ -1,46 +1,146 @@
 "use client";
 
-import ReactMarkdown from "react-markdown";
-import { MDXProvider } from "@mdx-js/react";
+import {
+  Binary,
+  Home,
+  Database,
+  BrainCircuit,
+  TreePine,
+  List,
+  SquareStack,
+  SquareChevronLeft,
+  Equal,
+  MessageSquare,
+  X,
+  Hash,
+  ArrowRightLeft,
+} from "lucide-react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from "@/components/ui/sidebar";
+import { NavMain } from "@/components/navigation/nav-main";
+import { NavProjects } from "@/components/navigation/nav-projects";
+import { NavUser } from "@/components/navigation/nav-user";
 
-interface MarkdownContentProps {
-  content: React.ReactNode | string;
-}
+const navItems = [
+  {
+    title: "Home",
+    url: "/",
+    icon: Home,
+  },
+  {
+    title: "Data Structures",
+    url: "/visualizer",
+    icon: Database,
+  },
+];
 
-const components = {
-  h1: ({ children }: { children: React.ReactNode }) => (
-    <h1 className="text-3xl font-bold mb-4">{children}</h1>
-  ),
-  h2: ({ children }: { children: React.ReactNode }) => (
-    <h2 className="text-2xl font-bold mb-3">{children}</h2>
-  ),
-  h3: ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-xl font-bold mb-2">{children}</h3>
-  ),
-  p: ({ children }: { children: React.ReactNode }) => (
-    <p className="mb-4 leading-relaxed">{children}</p>
-  ),
-  ul: ({ children }: { children: React.ReactNode }) => (
-    <ul className="list-disc pl-6 mb-4">{children}</ul>
-  ),
-  ol: ({ children }: { children: React.ReactNode }) => (
-    <ol className="list-decimal pl-6 mb-4">{children}</ol>
-  ),
-  li: ({ children }: { children: React.ReactNode }) => (
-    <li className="mb-1">{children}</li>
-  ),
-};
+const dataStructures = [
+  {
+    name: "Stack",
+    url: "/visualizer/stack",
+    icon: SquareStack,
+    description: "LIFO data structure with push and pop operations",
+  },
+  {
+    name: "Queue",
+    url: "/visualizer/queue",
+    icon: SquareChevronLeft,
+    description: "FIFO data structure with enqueue and dequeue operations",
+  },
+  {
+    name: "Linked List",
+    url: "/visualizer/linked-list",
+    icon: List,
+    description: "Linear data structure with elements linked using pointers",
+  },
+  {
+    name: "Binary Search Tree",
+    url: "/visualizer/binary-tree",
+    icon: Binary,
+    description: "Basic binary tree with BST properties",
+  },
+  {
+    name: "AVL Tree",
+    url: "/visualizer/avl-tree",
+    icon: TreePine,
+    description: "Self-balancing binary search tree",
+  },
+  {
+    name: "Heap",
+    url: "/visualizer/heap",
+    icon: Database,
+    description: "Binary heap implementation with max/min heap variants",
+  },
+];
 
-export function MarkdownContent({ content }: MarkdownContentProps) {
+const applications = [
+  {
+    name: "Infix to Postfix Conversion",
+    url: "/visualizer/stack-applications",
+    icon: Equal,
+    description: "Convert infix expressions to postfix notation using a stack",
+  },
+  {
+    name: "Huffman Coding",
+    url: "/visualizer/huffman",
+    icon: Hash,
+    description:
+      "Huffman coding is a popular data compression technique that creates variable-length prefix codes based on the frequency of characters in the input text.",
+  },
+  {
+    name: "Dijkstra's Algorithm",
+    url: "/visualizer/dijkstra",
+    icon: ArrowRightLeft,
+    description:
+      "Dijkstra's algorithm is a graph search algorithm that finds the shortest path between nodes in a graph.",
+  },
+];
+
+export function AppSidebar() {
   return (
-    <div className="prose prose-invert max-w-none">
-      <MDXProvider components={components}>
-        {typeof content === "string" ? (
-          <ReactMarkdown>{content}</ReactMarkdown>
-        ) : (
-          content
-        )}
-      </MDXProvider>
-    </div>
+    <Sidebar>
+      <SidebarHeader>
+        <div className="px-6 py-4 border-b flex items-center gap-2">
+          <BrainCircuit className="h-6 w-6" />
+          <h1 className="text-sm font-semibold">VISICode</h1>
+        </div>
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain items={navItems} />
+        <NavProjects
+          title="Data Structures"
+          projects={dataStructures.map((ds) => ({
+            name: ds.name,
+            url: ds.url,
+            icon: ds.icon,
+            description: ds.description,
+          }))}
+        />
+        <NavProjects
+          title="Applications"
+          projects={applications.map((app) => ({
+            name: app.name,
+            url: app.url,
+            icon: app.icon,
+            description: app.description,
+          }))}
+        />
+      </SidebarContent>
+      {/* <SidebarFooter>
+        <NavUser
+          user={{
+            name: "Guest User",
+            email: "guest@example.com",
+            avatar: "",
+          }}
+        />
+      </SidebarFooter> */}
+      <SidebarRail />
+    </Sidebar>
   );
 }

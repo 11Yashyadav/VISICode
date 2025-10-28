@@ -14,7 +14,8 @@ export const TechStack = () => (
               Built with Next.js 14 and TypeScript
             </h2>
             <p className="text-lg lg:max-w-sm leading-relaxed tracking-tight text-muted-foreground text-left">
-              Using React Flow for the graph visualization, and Framer Motion for smooth animations.
+              Using React Flow for the graph visualization, and Framer Motion
+              for smooth animations.
             </p>
           </div>
         </div>
@@ -61,4 +62,4 @@ export const TechStack = () => (
       </div>
     </div>
   </div>
-); 
+);
