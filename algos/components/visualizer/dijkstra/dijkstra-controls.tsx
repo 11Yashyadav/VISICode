@@ -19,7 +19,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
-import { Node } from "@/hooks/use-dijkstra";
+import { Graph } from "@/hooks/use-dijkstra";
 import { exampleGraphs } from "./example-graphs";
 import { Play, Pause } from "lucide-react";
 
