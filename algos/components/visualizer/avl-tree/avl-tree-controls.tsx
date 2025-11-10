@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useState } from "react";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from "react"
 
 interface AVLTreeControlsProps {
-  onInsert: (value: number) => void;
-  onClear: () => void;
-  onTraversal: (type: "inorder" | "preorder" | "postorder") => void;
-  traversalHistory: number[];
-  rotationHistory: string[];
-  isAnimating: boolean;
+  onInsert: (value: number) => void
+  onClear: () => void
+  onTraversal: (type: "inorder" | "preorder" | "postorder") => void
+  traversalHistory: number[]
+  rotationHistory: string[]
+  isAnimating: boolean
 }
 
 export function AVLTreeControls({
@@ -20,17 +20,17 @@ export function AVLTreeControls({
   onTraversal,
   traversalHistory,
   rotationHistory,
-  isAnimating,
+  isAnimating
 }: AVLTreeControlsProps) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("")
 
   const handleInsert = () => {
-    const num = Number(value);
+    const num = Number(value)
     if (!isNaN(num)) {
-      onInsert(num);
-      setValue("");
+      onInsert(num)
+      setValue("")
     }
-  };
+  }
 
   return (
     <div className="space-y-4">
@@ -45,7 +45,7 @@ export function AVLTreeControls({
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="Enter value"
-              onKeyDown={(e) => e.key === "Enter" && handleInsert()}
+              onKeyDown={(e) => e.key === 'Enter' && handleInsert()}
               className="flex-1"
             />
             <Button onClick={handleInsert}>Insert</Button>
@@ -59,31 +59,35 @@ export function AVLTreeControls({
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            <Button
-              onClick={() => onTraversal("inorder")}
+            <Button 
+              onClick={() => onTraversal("inorder")} 
               disabled={isAnimating}
               variant="secondary"
               className="w-full"
             >
               In-Order
             </Button>
-            <Button
-              onClick={() => onTraversal("preorder")}
+            <Button 
+              onClick={() => onTraversal("preorder")} 
               disabled={isAnimating}
               variant="secondary"
               className="w-full"
             >
               Pre-Order
             </Button>
-            <Button
-              onClick={() => onTraversal("postorder")}
+            <Button 
+              onClick={() => onTraversal("postorder")} 
               disabled={isAnimating}
               variant="secondary"
               className="w-full"
             >
               Post-Order
             </Button>
-            <Button variant="destructive" onClick={onClear} className="w-full">
+            <Button 
+              variant="destructive" 
+              onClick={onClear}
+              className="w-full"
+            >
               Clear
             </Button>
           </div>
@@ -98,7 +102,7 @@ export function AVLTreeControls({
           <CardContent>
             <div className="flex flex-wrap gap-2">
               {traversalHistory.map((value, index) => (
-                <div
+                <div 
                   key={index}
                   className="bg-primary/10 text-primary px-3 py-1.5 rounded-md text-sm font-medium
                             border border-primary/20 shadow-sm"
@@ -119,7 +123,7 @@ export function AVLTreeControls({
           <CardContent>
             <div className="flex flex-col gap-2">
               {rotationHistory.map((rotation, index) => (
-                <div
+                <div 
                   key={index}
                   className="bg-orange-500/10 text-orange-500 px-3 py-1.5 rounded-md text-sm font-medium
                             border border-orange-500/20 shadow-sm"
@@ -132,5 +136,5 @@ export function AVLTreeControls({
         </Card>
       )}
     </div>
-  );
-}
+  )
+} 

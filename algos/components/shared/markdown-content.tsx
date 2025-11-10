@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import ReactMarkdown from "react-markdown";
-import { MDXProvider } from "@mdx-js/react";
+import ReactMarkdown from "react-markdown"
+import { MDXProvider } from '@mdx-js/react'
 
 interface MarkdownContentProps {
-  content: React.ReactNode | string;
+  content: React.ReactNode | string
 }
 
 const components = {
@@ -29,18 +29,18 @@ const components = {
   li: ({ children }: { children: React.ReactNode }) => (
     <li className="mb-1">{children}</li>
   ),
-};
+}
 
 export function MarkdownContent({ content }: MarkdownContentProps) {
   return (
     <div className="prose prose-invert max-w-none">
       <MDXProvider components={components}>
-        {typeof content === "string" ? (
+        {typeof content === 'string' ? (
           <ReactMarkdown>{content}</ReactMarkdown>
         ) : (
           content
         )}
       </MDXProvider>
     </div>
-  );
+  )
 }

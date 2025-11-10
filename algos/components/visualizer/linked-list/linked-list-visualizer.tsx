@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MarkdownContent } from "@/components/shared/markdown-content";
-import { LinkedListDisplay } from "@/components/visualizer/linked-list/linked-list-display";
-import { LinkedListControls } from "@/components/visualizer/linked-list/linked-list-controls";
-import { LinkedListOperations } from "@/components/visualizer/linked-list/linked-list-operations";
-import { useLinkedList } from "@/hooks/use-linked-list";
-import { ListType } from "./types";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { MarkdownContent } from "@/components/shared/markdown-content"
+import { LinkedListDisplay } from "@/components/visualizer/linked-list/linked-list-display"
+import { LinkedListControls } from "@/components/visualizer/linked-list/linked-list-controls"
+import { LinkedListOperations } from "@/components/visualizer/linked-list/linked-list-operations"
+import { useLinkedList } from "@/hooks/use-linked-list"
+import { ListType } from "./types"
 
 const LIST_TYPES: { value: ListType; label: string }[] = [
-  { value: "SLL", label: "SLL" },
-  { value: "DLL", label: "DLL" },
-  { value: "CSLL", label: "CSLL" },
-  { value: "CDLL", label: "CDLL" },
-];
+  { value: 'SLL', label: 'SLL' },
+  { value: 'DLL', label: 'DLL' },
+  { value: 'CSLL', label: 'CSLL' },
+  { value: 'CDLL', label: 'CDLL' },
+]
 
 interface LinkedListVisualizerProps {
-  content: React.ReactNode;
+  content: React.ReactNode
 }
 
 export function LinkedListVisualizer({ content }: LinkedListVisualizerProps) {
@@ -31,7 +31,7 @@ export function LinkedListVisualizer({ content }: LinkedListVisualizerProps) {
 
       <Tabs defaultValue="SLL" className="w-full space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          {LIST_TYPES.map((type) => (
+          {LIST_TYPES.map(type => (
             <TabsTrigger key={type.value} value={type.value}>
               {type.label}
             </TabsTrigger>
@@ -39,25 +39,18 @@ export function LinkedListVisualizer({ content }: LinkedListVisualizerProps) {
           <TabsTrigger value="explanation">Info</TabsTrigger>
         </TabsList>
 
-        {LIST_TYPES.map((type) => (
-          <TabsContent
-            key={type.value}
-            value={type.value}
-            className="space-y-6"
-          >
+        {LIST_TYPES.map(type => (
+          <TabsContent key={type.value} value={type.value} className="space-y-6">
             <LinkedListContent type={type.value} />
           </TabsContent>
         ))}
-
-        <TabsContent
-          value="explanation"
-          className="prose prose-invert max-w-none"
-        >
+        
+        <TabsContent value="explanation" className="prose prose-invert max-w-none">
           <MarkdownContent content={content} />
         </TabsContent>
       </Tabs>
     </div>
-  );
+  )
 }
 
 function LinkedListContent({ type }: { type: ListType }) {
@@ -71,12 +64,12 @@ function LinkedListContent({ type }: { type: ListType }) {
     deleteFront,
     deleteBack,
     reverse,
-  } = useLinkedList(type);
+  } = useLinkedList(type)
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
       <div className="xl:col-span-1 space-y-6">
-        <LinkedListControls
+        <LinkedListControls 
           onInsertFront={insertFront}
           onInsertBack={insertBack}
           onDeleteFront={deleteFront}
@@ -88,12 +81,12 @@ function LinkedListContent({ type }: { type: ListType }) {
         <LinkedListOperations operations={operations} />
       </div>
       <div className="xl:col-span-2">
-        <LinkedListDisplay
+        <LinkedListDisplay 
           list={list}
           highlightedNodes={animationState.highlightedNodes}
           message={animationState.message}
         />
       </div>
     </div>
-  );
-}
+  )
+} 

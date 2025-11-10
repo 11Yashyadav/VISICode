@@ -1,10 +1,10 @@
 export interface ExampleGraph {
-  name: string;
-  description: string;
-  nodes: { id: string; x: number; y: number }[];
-  edges: { source: string; target: string; weight: number }[];
-  startNode: string;
-  endNode: string;
+  name: string
+  description: string
+  nodes: { id: string; x: number; y: number }[]
+  edges: { source: string; target: string; weight: number }[]
+  startNode: string
+  endNode: string
 }
 
 export const exampleGraphs: ExampleGraph[] = [
@@ -53,7 +53,7 @@ export const exampleGraphs: ExampleGraph[] = [
     name: "Large Network",
     description: "A large network with multiple possible paths",
     nodes: [
-      { id: "A", x: 100, y: 300 }, // Starting node
+      { id: "A", x: 100, y: 300 },  // Starting node
       { id: "B", x: 250, y: 200 },
       { id: "C", x: 250, y: 400 },
       { id: "D", x: 400, y: 150 },
@@ -95,4 +95,4 @@ export const exampleGraphs: ExampleGraph[] = [
     startNode: "A",
     endNode: "P",
   },
-];
+] 

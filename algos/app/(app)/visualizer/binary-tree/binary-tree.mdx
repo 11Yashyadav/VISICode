@@ -22,7 +22,7 @@ typedef struct Node {
 void preOrderTraversal(Node* root) {
     if (root == NULL)
         return;
-
+        
     printf("%d ", root->value);        // Visit node
     preOrderTraversal(root->left);     // Left subtree
     preOrderTraversal(root->right);    // Right subtree
@@ -35,14 +35,14 @@ In in-order traversal, we first visit the left node, then parent, then right nod
 
 ```c:inorder.c
 /*
- * Time: O(n)
+ * Time: O(n) 
  * Space: O(1)
  */
 
 void inOrderTraversal(Node* root) {
     if (root == NULL)
         return;
-
+        
     inOrderTraversal(root->left);      // Left subtree
     printf("%d ", root->value);        // Visit node
     inOrderTraversal(root->right);     // Right subtree
@@ -62,7 +62,7 @@ Post-order traversal visits the left subtree, then right subtree, then the node.
 void postOrderTraversal(Node* root) {
     if (root == NULL)
         return;
-
+        
     postOrderTraversal(root->left);    // Left subtree
     postOrderTraversal(root->right);   // Right subtree
     printf("%d ", root->value);        // Visit node
@@ -71,21 +71,19 @@ void postOrderTraversal(Node* root) {
 
 ## Traversal Applications
 
-| Traversal  | Use Cases                                  |
-| ---------- | ------------------------------------------ |
-| Pre-order  | Creating a copy of the tree, Serialization |
-| In-order   | Gets nodes in non-decreasing order in BST  |
-| Post-order | Deleting nodes, Computing directory size   |
+| Traversal | Use Cases |
+|-----------|-----------|
+| Pre-order | Creating a copy of the tree, Serialization |
+| In-order  | Gets nodes in non-decreasing order in BST |
+| Post-order| Deleting nodes, Computing directory size |
 
 ## Key Points
 
 - **Pre-order**: Root → Left → Right
-
   - Used for creating prefix expression trees
   - Helpful in serialization
 
 - **In-order**: Left → Root → Right
-
   - Gives sorted sequence for BST
   - Most natural way to "read" a tree
 

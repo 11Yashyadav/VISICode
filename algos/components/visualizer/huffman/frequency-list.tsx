@@ -44,4 +44,4 @@ export function FrequencyList({ frequencies, totalChars }: FrequencyListProps) {
       </CardContent>
     </Card>
   )
-}
+} 

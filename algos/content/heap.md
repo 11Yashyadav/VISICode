@@ -15,13 +15,11 @@ A binary heap is a complete binary tree that satisfies the heap property. In a m
 ## Operations
 
 ### Insertion (O(log n))
-
 1. Add element at the next available position
 2. Compare with parent and swap if heap property is violated
 3. Continue until heap property is satisfied (heapify-up)
 
 ### Deletion (O(log n))
-
 1. Remove root element
 2. Replace with last element
 3. Compare with children and swap with larger (max-heap) or smaller (min-heap) child
@@ -33,4 +31,4 @@ A binary heap is a complete binary tree that satisfies the heap property. In a m
 - Heap Sort
 - Graph Algorithms (Dijkstra's, Prim's)
 - Memory Management
-- Event-driven Simulation
+- Event-driven Simulation 

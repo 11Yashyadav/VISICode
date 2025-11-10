@@ -86,7 +86,7 @@ export function HuffmanDisplay({
 
       if (parentId) {
         newEdges.push({
-          id: ${parentId}->${node.id},
+          id: `${parentId}->${node.id}`,
           source: parentId,
           target: node.id,
           type: 'default',
@@ -180,4 +180,4 @@ export function HuffmanDisplay({
       </ReactFlow>
     </div>
   )
-}
+} 

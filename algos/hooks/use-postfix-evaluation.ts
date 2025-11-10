@@ -44,7 +44,7 @@ export function usePostfixEvaluation() {
       if (token.type === 'operand') {
         const num = Number(token.value)
         stack.push(num)
-        addStep(stack, token, i, Push operand ${token.value} to stack)
+        addStep(stack, token, i, `Push operand ${token.value} to stack`)
       } 
       else if (token.type === 'operator' && isOperator(token.value)) {
         if (stack.length < 2) {
@@ -68,11 +68,11 @@ export function usePostfixEvaluation() {
           [a, b], 
           token, 
           i, 
-          Pop ${b} and ${a}, compute ${a} ${token.value} ${b} = ${result}
+          `Pop ${b} and ${a}, compute ${a} ${token.value} ${b} = ${result}`
         )
         
         stack.push(result)
-        addStep(stack, token, i, Push result ${result} to stack)
+        addStep(stack, token, i, `Push result ${result} to stack`)
       }
     }
 
@@ -90,4 +90,4 @@ export function usePostfixEvaluation() {
     result,
     evaluate
   }
-}
+} 

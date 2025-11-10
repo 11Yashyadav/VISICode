@@ -59,7 +59,7 @@ export function PostfixEvaluation({ expression }: PostfixEvaluationProps) {
                   <AnimatePresence mode="popLayout">
                     {[...steps[steps.length - 1].stack].reverse().map((value, i) => (
                       <motion.div
-                        key={${value}-${i}}
+                        key={`${value}-${i}`}
                         layout
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -98,4 +98,4 @@ export function PostfixEvaluation({ expression }: PostfixEvaluationProps) {
       )}
     </div>
   )
-}
+} 

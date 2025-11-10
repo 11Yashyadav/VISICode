@@ -79,7 +79,7 @@ export function ConversionSteps({ steps, currentExpression }: ConversionStepsPro
               <AnimatePresence mode="popLayout">
                 {[...currentStep.state.stack].reverse().map((token, i) => (
                   <motion.div
-                    key={${token.value}-${i}}
+                    key={`${token.value}-${i}`}
                     layout
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ export function ConversionSteps({ steps, currentExpression }: ConversionStepsPro
             <AnimatePresence mode="popLayout">
               {currentStep.state.output.map((token, i) => (
                 <motion.div
-                  key={${token.value}-${i}}
+                  key={`${token.value}-${i}`}
                   layout
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -124,4 +124,4 @@ export function ConversionSteps({ steps, currentExpression }: ConversionStepsPro
       </CardContent>
     </Card>
   )
-}
+} 

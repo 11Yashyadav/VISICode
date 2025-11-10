@@ -35,7 +35,7 @@ int push(Stack* stack, int value) {
         printf("Stack Overflow\n");
         return 0;
     }
-
+    
     stack->items[++stack->top] = value;
     printf("%d pushed to stack\n", value);
     return 1;
@@ -47,7 +47,7 @@ int pop(Stack* stack) {
         printf("Stack Underflow\n");
         return -1;
     }
-
+    
     return stack->items[stack->top--];
 }
 
@@ -57,7 +57,7 @@ int peek(Stack* stack) {
         printf("Stack is empty\n");
         return -1;
     }
-
+    
     return stack->items[stack->top];
 }
 ```
@@ -68,19 +68,19 @@ int peek(Stack* stack) {
 int main() {
     Stack stack;
     initStack(&stack);
-
+    
     // Push elements
     push(&stack, 10);
     push(&stack, 20);
     push(&stack, 30);
-
+    
     // Pop elements
     printf("Popped: %d\n", pop(&stack));  // 30
     printf("Popped: %d\n", pop(&stack));  // 20
-
+    
     // Peek at top element
     printf("Top element: %d\n", peek(&stack));  // 10
-
+    
     return 0;
 }
 ```
@@ -88,22 +88,18 @@ int main() {
 ## Operations
 
 ### Push (O(1))
-
 - Adds an element to the top of the stack
 - If stack is full, results in stack overflow
 
 ### Pop (O(1))
-
 - Removes and returns the top element
 - If stack is empty, results in stack underflow
 
 ### Peek/Top (O(1))
-
 - Returns the top element without removing it
 - Does not modify the stack
 
 ## Properties
-
 - Fixed size (in array implementation)
 - Elements are ordered by insertion time
 - Only top element is accessible
@@ -135,7 +131,7 @@ void dynamicPush(DynamicStack* stack, int value) {
         printf("Memory allocation failed!\n");
         return;
     }
-
+    
     newNode->data = value;
     newNode->next = stack->top;
     stack->top = newNode;
@@ -148,7 +144,7 @@ int dynamicPop(DynamicStack* stack) {
         printf("Stack Underflow\n");
         return -1;
     }
-
+    
     Node* temp = stack->top;
     int value = temp->data;
     stack->top = stack->top->next;
@@ -158,9 +154,8 @@ int dynamicPop(DynamicStack* stack) {
 ```
 
 ## Applications
-
 - Function call stack in programming languages
 - Expression evaluation and syntax parsing
 - Undo operations in text editors
 - Browser history (back button)
-- Backtracking algorithms
+- Backtracking algorithms 

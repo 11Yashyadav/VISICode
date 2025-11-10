@@ -1,25 +1,22 @@
-"use client";
+"use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface CompressionDisplayProps {
-  originalText: string;
-  codes: Map<string, string>;
+  originalText: string
+  codes: Map<string, string>
 }
 
-export function CompressionDisplay({
-  originalText,
-  codes,
-}: CompressionDisplayProps) {
-  if (!originalText || codes.size === 0) return null;
+export function CompressionDisplay({ originalText, codes }: CompressionDisplayProps) {
+  if (!originalText || codes.size === 0) return null
 
-  const originalBits = originalText.length * 8;
+  const originalBits = originalText.length * 8
   const compressedBits = Array.from(originalText).reduce((total, char) => {
-    return total + (codes.get(char)?.length || 0);
-  }, 0);
+    return total + (codes.get(char)?.length || 0)
+  }, 0)
 
-  const compressionRatio = originalBits / compressedBits;
-  const spaceSaving = ((1 - 1 / compressionRatio) * 100).toFixed(1);
+  const compressionRatio = originalBits / compressedBits
+  const spaceSaving = ((1 - 1/compressionRatio) * 100).toFixed(1)
 
   return (
     <Card className="bg-card/50 backdrop-blur-sm">
@@ -28,9 +25,7 @@ export function CompressionDisplay({
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <div className="text-sm text-muted-foreground">
-            Original Text ({originalBits} bits):
-          </div>
+          <div className="text-sm text-muted-foreground">Original Text ({originalBits} bits):</div>
           <div className="flex flex-wrap gap-1">
             {Array.from(originalText).map((char, i) => (
               <div
@@ -52,7 +47,7 @@ export function CompressionDisplay({
           </div>
           <div className="flex flex-wrap gap-1">
             {Array.from(originalText).map((char, i) => {
-              const code = codes.get(char) || "";
+              const code = codes.get(char) || ''
               return (
                 <div
                   key={i}
@@ -63,7 +58,7 @@ export function CompressionDisplay({
                 >
                   {code}
                 </div>
-              );
+              )
             })}
           </div>
         </div>
@@ -76,5 +71,5 @@ export function CompressionDisplay({
         </div>
       </CardContent>
     </Card>
-  );
-}
+  )
+} 

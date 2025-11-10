@@ -1,11 +1,11 @@
 export interface QueueNode {
-  id: string;
-  value: number;
-  index: number;
+  id: string
+  value: number
+  index: number
 }
 
 export interface QueueOperation {
-  type: "enqueue" | "dequeue";
-  value?: number;
-  timestamp: number;
-}
+  type: 'enqueue' | 'dequeue'
+  value?: number
+  timestamp: number
+} 

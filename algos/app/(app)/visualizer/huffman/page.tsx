@@ -1,4 +1,4 @@
-import { HuffmanVisualizer } from "@/components/visualizer/huffman/huffman-visualizer";
+import { HuffmanVisualizer } from "@/components/visualizer/huffman/huffman-visualizer"
 
 const content = `
 # Huffman Coding
@@ -25,8 +25,8 @@ For the text "hello", the process would be:
 - Count frequencies: h(1), e(1), l(2), o(1)
 - Build tree by merging lowest frequency nodes
 - Assign codes: h(00), e(01), l(1), o(11)
-`;
+`
 
 export default function HuffmanPage() {
-  return <HuffmanVisualizer content={content} />;
-}
+  return <HuffmanVisualizer content={content} />
+} 

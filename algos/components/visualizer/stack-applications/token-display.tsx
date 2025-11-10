@@ -24,4 +24,4 @@ export function TokenDisplay({ token, highlighted = false }: TokenDisplayProps) 
       {token.value}
     </div>
   )
-}
+} 

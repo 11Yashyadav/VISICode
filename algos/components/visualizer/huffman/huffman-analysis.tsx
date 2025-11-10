@@ -163,4 +163,4 @@ export function HuffmanAnalysis({ tree, codes }: { tree: HuffmanNode | null, cod
       </Card>
     </div>
   )
-}
+} 

@@ -63,13 +63,13 @@ void heapifyDown(Heap* h, int i) {
     int minMax = i;
     int left = leftChild(i);
     int right = rightChild(i);
-
+    
     if (left < h->size && compareHeap(h, h->arr[minMax], h->arr[left]))
         minMax = left;
-
+        
     if (right < h->size && compareHeap(h, h->arr[minMax], h->arr[right]))
         minMax = right;
-
+        
     if (minMax != i) {
         swap(&h->arr[i], &h->arr[minMax]);
         heapifyDown(h, minMax);
@@ -82,7 +82,7 @@ void insert(Heap* h, int value) {
         printf("Heap is full\n");
         return;
     }
-
+    
     h->arr[h->size] = value;
     heapifyUp(h, h->size);
     h->size++;
@@ -94,12 +94,12 @@ int extractRoot(Heap* h) {
         printf("Heap is empty\n");
         return -1;
     }
-
+    
     int root = h->arr[0];
     h->arr[0] = h->arr[h->size - 1];
     h->size--;
     heapifyDown(h, 0);
-
+    
     return root;
 }
 
@@ -120,29 +120,29 @@ int main() {
     // Create and use a min heap
     Heap minHeap;
     initHeap(&minHeap, 1);
-
+    
     insert(&minHeap, 3);
     insert(&minHeap, 2);
     insert(&minHeap, 1);
     insert(&minHeap, 15);
     insert(&minHeap, 5);
-
+    
     printf("Min element: %d\n", extractRoot(&minHeap));  // 1
     printf("Next min: %d\n", extractRoot(&minHeap));     // 2
-
+    
     // Create and use a max heap
     Heap maxHeap;
     initHeap(&maxHeap, 0);
-
+    
     insert(&maxHeap, 3);
     insert(&maxHeap, 2);
     insert(&maxHeap, 1);
     insert(&maxHeap, 15);
     insert(&maxHeap, 5);
-
+    
     printf("Max element: %d\n", extractRoot(&maxHeap));  // 15
     printf("Next max: %d\n", extractRoot(&maxHeap));     // 5
-
+    
     return 0;
 }
 ```
@@ -160,20 +160,17 @@ int main() {
 ## Operations
 
 ### Insertion (O(log n))
-
 1. Add element at the next available position
 2. Compare with parent and swap if heap property is violated
 3. Continue until heap property is satisfied (heapify-up)
 
 ### Deletion (O(log n))
-
 1. Remove root element
 2. Replace with last element
 3. Compare with children and swap with larger (max-heap) or smaller (min-heap) child
 4. Continue until heap property is satisfied (heapify-down)
 
 ## Applications
-
 - Priority Queues
 - Heap Sort
 - Graph Algorithms (Dijkstra's, Prim's)

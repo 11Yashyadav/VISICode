@@ -1,11 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface HuffmanCodesProps {
-  codes: Map<string, string>;
+  codes: Map<string, string>
 }
 
 export function HuffmanCodes({ codes }: HuffmanCodesProps) {
-  if (codes.size === 0) return null;
+  if (codes.size === 0) return null
 
   return (
     <Card className="bg-card/50 backdrop-blur-sm">
@@ -15,7 +15,7 @@ export function HuffmanCodes({ codes }: HuffmanCodesProps) {
       <CardContent>
         <div className="grid grid-cols-2 gap-2">
           {Array.from(codes.entries()).map(([char, code]) => (
-            <div
+            <div 
               key={char}
               className="flex justify-between items-center p-2 bg-muted rounded-md"
             >
@@ -26,5 +26,5 @@ export function HuffmanCodes({ codes }: HuffmanCodesProps) {
         </div>
       </CardContent>
     </Card>
-  );
-}
+  )
+} 

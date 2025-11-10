@@ -118,4 +118,4 @@ export function InfixPostfixVisualizer({ content }: InfixPostfixVisualizerProps)
       </Tabs>
     </div>
   )
-}
+} 

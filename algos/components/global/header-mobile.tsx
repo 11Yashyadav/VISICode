@@ -1,14 +1,14 @@
-import React from "react";
-import Link from "next/link";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import React from 'react'
+import Link from 'next/link'
+import { Menu } from 'lucide-react'
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 
 interface NavigationMobileProps {
   components: {
@@ -46,5 +46,5 @@ export function NavigationMobile({ components }: NavigationMobileProps) {
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  );
+  )
 }

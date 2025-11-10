@@ -1,19 +1,13 @@
-"use client";
+"use client"
 
-import { Graph } from "@/hooks/use-dijkstra";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Graph } from "@/hooks/use-dijkstra"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface DijkstraAnalysisProps {
-  graph: Graph;
-  distances: Map<string, number>;
-  path: string[];
-  visitedNodes: Set<string>;
+  graph: Graph
+  distances: Map<string, number>
+  path: string[]
+  visitedNodes: Set<string>
 }
 
 export function DijkstraAnalysis({
@@ -22,8 +16,7 @@ export function DijkstraAnalysis({
   path,
   visitedNodes,
 }: DijkstraAnalysisProps) {
-  const shortestDistance =
-    path.length > 0 ? distances.get(path[path.length - 1]) : null;
+  const shortestDistance = path.length > 0 ? distances.get(path[path.length - 1]) : null
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -44,9 +37,10 @@ export function DijkstraAnalysis({
           <div className="flex justify-between">
             <span>Average Degree:</span>
             <span className="font-mono">
-              {graph.nodes.length > 0
-                ? ((2 * graph.edges.length) / graph.nodes.length).toFixed(2)
-                : "0.00"}
+              {graph.nodes.length > 0 
+                ? (2 * graph.edges.length / graph.nodes.length).toFixed(2)
+                : '0.00'
+              }
             </span>
           </div>
         </CardContent>
@@ -72,10 +66,9 @@ export function DijkstraAnalysis({
             <span>Progress:</span>
             <span className="font-mono">
               {graph.nodes.length > 0
-                ? `${((visitedNodes.size / graph.nodes.length) * 100).toFixed(
-                    1
-                  )}%`
-                : "0%"}
+                ? `${((visitedNodes.size / graph.nodes.length) * 100).toFixed(1)}%`
+                : '0%'
+              }
             </span>
           </div>
         </CardContent>
@@ -94,19 +87,20 @@ export function DijkstraAnalysis({
           <div className="flex justify-between">
             <span>Total Distance:</span>
             <span className="font-mono">
-              {shortestDistance === null || shortestDistance === Infinity
-                ? "∞"
-                : shortestDistance}
+              {shortestDistance === null || shortestDistance === Infinity 
+                ? '∞' 
+                : shortestDistance
+              }
             </span>
           </div>
           <div className="flex justify-between">
             <span>Path:</span>
             <span className="font-mono">
-              {path.length > 0 ? path.join(" → ") : "None"}
+              {path.length > 0 ? path.join(' → ') : 'None'}
             </span>
           </div>
         </CardContent>
       </Card>
     </div>
-  );
-}
+  )
+} 

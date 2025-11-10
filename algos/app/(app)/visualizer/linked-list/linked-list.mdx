@@ -33,14 +33,14 @@ Node* insertFront(Node* head, int data) {
 // Insert at end
 Node* insertBack(Node* head, int data) {
     Node* newNode = createNode(data);
-
+    
     if (head == NULL)
         return newNode;
-
+        
     Node* current = head;
     while (current->next != NULL)
         current = current->next;
-
+        
     current->next = newNode;
     return head;
 }
@@ -49,7 +49,7 @@ Node* insertBack(Node* head, int data) {
 Node* deleteFront(Node* head) {
     if (head == NULL)
         return NULL;
-
+        
     Node* temp = head->next;
     free(head);
     return temp;
@@ -87,29 +87,29 @@ DNode* createDNode(int data) {
 // Insert at beginning
 DNode* insertFrontDLL(DNode* head, int data) {
     DNode* newNode = createDNode(data);
-
+    
     if (head != NULL) {
         newNode->next = head;
         head->prev = newNode;
     }
-
+    
     return newNode;
 }
 
 // Insert at end
 DNode* insertBackDLL(DNode* head, int data) {
     DNode* newNode = createDNode(data);
-
+    
     if (head == NULL)
         return newNode;
-
+        
     DNode* current = head;
     while (current->next != NULL)
         current = current->next;
-
+        
     current->next = newNode;
     newNode->prev = current;
-
+    
     return head;
 }
 ```
@@ -120,16 +120,16 @@ DNode* insertBackDLL(DNode* head, int data) {
 // Insert in circular list
 Node* insertCSLL(Node* head, int data) {
     Node* newNode = createNode(data);
-
+    
     if (head == NULL) {
         newNode->next = newNode;  // Point to itself
         return newNode;
     }
-
+    
     // Insert at end
     newNode->next = head->next;
     head->next = newNode;
-
+    
     return head;
 }
 
@@ -139,7 +139,7 @@ Node* deleteCSLL(Node* head) {
         free(head);
         return NULL;
     }
-
+    
     Node* temp = head->next;
     head->next = temp->next;
     free(temp);
@@ -153,19 +153,19 @@ Node* deleteCSLL(Node* head) {
 // Insert in circular doubly list
 DNode* insertCDLL(DNode* head, int data) {
     DNode* newNode = createDNode(data);
-
+    
     if (head == NULL) {
         newNode->next = newNode;
         newNode->prev = newNode;
         return newNode;
     }
-
+    
     // Insert at end
     newNode->next = head;
     newNode->prev = head->prev;
     head->prev->next = newNode;
     head->prev = newNode;
-
+    
     return head;
 }
 
@@ -175,7 +175,7 @@ DNode* deleteCDLL(DNode* head) {
         free(head);
         return NULL;
     }
-
+    
     DNode* temp = head->next;
     head->next = temp->next;
     temp->next->prev = head;
@@ -187,7 +187,6 @@ DNode* deleteCDLL(DNode* head) {
 ## Common Operations
 
 ### Traversal
-
 ```c
 // Forward traversal
 void traverse(Node* head) {
@@ -211,7 +210,6 @@ void reverseTraverse(DNode* tail) {
 ```
 
 ## Applications
-
 - Implementation of stacks and queues
 - Music playlist (circular)
 - Undo/Redo operations (doubly)

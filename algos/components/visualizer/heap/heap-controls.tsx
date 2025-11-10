@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { HeapType } from "./types";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+import { useState } from "react"
+import { HeapType } from "./types"
 
 interface HeapControlsProps {
-  onInsert: (value: number) => void;
-  onInsertMany: (values: string) => void;
-  onClear: () => void;
-  onToggleType: () => void;
-  heapType: HeapType;
+  onInsert: (value: number) => void
+  onInsertMany: (values: string) => void
+  onClear: () => void
+  onToggleType: () => void
+  heapType: HeapType
 }
 
 export function HeapControls({
@@ -23,23 +23,23 @@ export function HeapControls({
   onToggleType,
   heapType,
 }: HeapControlsProps) {
-  const [value, setValue] = useState("");
-  const [bulkInput, setBulkInput] = useState("");
+  const [value, setValue] = useState("")
+  const [bulkInput, setBulkInput] = useState("")
 
   const handleInsert = () => {
-    const num = Number(value);
+    const num = Number(value)
     if (!isNaN(num)) {
-      onInsert(num);
-      setValue("");
+      onInsert(num)
+      setValue("")
     }
-  };
+  }
 
   const handleBulkInsert = () => {
     if (bulkInput.trim()) {
-      onInsertMany(bulkInput);
-      setBulkInput("");
+      onInsertMany(bulkInput)
+      setBulkInput("")
     }
-  };
+  }
 
   return (
     <div className="space-y-4">
@@ -50,7 +50,7 @@ export function HeapControls({
             <div className="flex items-center space-x-2">
               <Switch
                 id="heap-type"
-                checked={heapType === "max"}
+                checked={heapType === 'max'}
                 onCheckedChange={onToggleType}
               />
               <Label htmlFor="heap-type">Max Heap</Label>
@@ -66,7 +66,7 @@ export function HeapControls({
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 placeholder="Enter value"
-                onKeyDown={(e) => e.key === "Enter" && handleInsert()}
+                onKeyDown={(e) => e.key === 'Enter' && handleInsert()}
                 className="flex-1"
               />
               <Button onClick={handleInsert}>Insert</Button>
@@ -80,18 +80,22 @@ export function HeapControls({
                 value={bulkInput}
                 onChange={(e) => setBulkInput(e.target.value)}
                 placeholder="e.g., 1, 2, 3, 4"
-                onKeyDown={(e) => e.key === "Enter" && handleBulkInsert()}
+                onKeyDown={(e) => e.key === 'Enter' && handleBulkInsert()}
                 className="flex-1"
               />
               <Button onClick={handleBulkInsert}>Insert All</Button>
             </div>
           </div>
 
-          <Button variant="destructive" onClick={onClear} className="w-full">
+          <Button 
+            variant="destructive" 
+            onClick={onClear}
+            className="w-full"
+          >
             Clear Heap
           </Button>
         </CardContent>
       </Card>
     </div>
-  );
-}
+  )
+} 

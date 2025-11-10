@@ -66,13 +66,13 @@ int isOperator(char ch) {
 void infixToPostfix(char* infix, char* postfix) {
     Stack stack;
     initStack(&stack);
-
+    
     int i, j = 0;
     char ch;
-
+    
     for (i = 0; infix[i] != '\0'; i++) {
         ch = infix[i];
-
+        
         // If operand, add to output
         if (isalnum(ch)) {
             postfix[j++] = ch;
@@ -90,19 +90,19 @@ void infixToPostfix(char* infix, char* postfix) {
         }
         // If operator
         else if (isOperator(ch)) {
-            while (!isEmpty(&stack) && peek(&stack) != '(' &&
+            while (!isEmpty(&stack) && peek(&stack) != '(' && 
                    precedence(ch) <= precedence(peek(&stack))) {
                 postfix[j++] = pop(&stack);
             }
             push(&stack, ch);
         }
     }
-
+    
     // Pop remaining operators
     while (!isEmpty(&stack)) {
         postfix[j++] = pop(&stack);
     }
-
+    
     postfix[j] = '\0';
 }
 ```
@@ -113,11 +113,11 @@ void infixToPostfix(char* infix, char* postfix) {
 int main() {
     char infix[] = "a+b*(c^d-e)^(f+g*h)-i";
     char postfix[MAX_SIZE];
-
+    
     infixToPostfix(infix, postfix);
     printf("Infix: %s\n", infix);
     printf("Postfix: %s\n", postfix);
-
+    
     return 0;
 }
 ```
@@ -132,23 +132,21 @@ int main() {
    - An operator: Pop stack and add to output until a lower precedence operator is found
 
 ### Operator Precedence
-
 1. Parentheses: ( )
 2. Exponentiation: ^
-3. Multiplication and Division: \* /
+3. Multiplication and Division: * /
 4. Addition and Subtraction: + -
 
 ## Example Conversions
 
 | Infix Expression | Postfix Expression |
-| ---------------- | ------------------ |
-| `a + b`          | `a b +`            |
-| `a + b * c`      | `a b c * +`        |
-| `(a + b) * c`    | `a b + c *`        |
-| `a + b * c / d`  | `a b c * d / +`    |
+|-----------------|-------------------|
+| `a + b` | `a b +` |
+| `a + b * c` | `a b c * +` |
+| `(a + b) * c` | `a b + c *` |
+| `a + b * c / d` | `a b c * d / +` |
 
 ## Applications
-
 - Expression evaluation in compilers
 - Calculator applications
 - Syntax parsing

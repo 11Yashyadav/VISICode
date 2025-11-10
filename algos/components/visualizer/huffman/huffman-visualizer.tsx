@@ -88,4 +88,4 @@ export function HuffmanVisualizer({ content }: HuffmanVisualizerProps) {
       </Tabs>
     </div>
   )
-}
+} 

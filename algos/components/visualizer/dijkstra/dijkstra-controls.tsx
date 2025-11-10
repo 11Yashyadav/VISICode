@@ -1,47 +1,35 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
-import { Graph } from "@/hooks/use-dijkstra";
-import { exampleGraphs } from "./example-graphs";
-import { Play, Pause } from "lucide-react";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react"
+import { Node } from "@/hooks/use-dijkstra"
+import { exampleGraphs } from "./example-graphs"
+import { Play, Pause } from "lucide-react"
 
 interface DijkstraControlsProps {
-  onAddNode: (x: number, y: number) => void;
-  onAddEdge: (source: string, target: string, weight: number) => void;
-  onSetStartNode: (nodeId: string) => void;
-  onSetEndNode: (nodeId: string) => void;
-  onFindPath: () => void;
-  onClear: () => void;
-  onNext: () => void;
-  onPrevious: () => void;
-  isAnimating: boolean;
-  currentStep: number;
-  totalSteps: number;
-  onLoadExample: (graphIndex: number) => void;
-  startNodeId: string | null;
-  endNodeId: string | null;
-  path: string[];
-  distances: Map<string, number>;
-  onAutoPlay: () => void;
-  isAutoPlaying: boolean;
+  onAddNode: (x: number, y: number) => void
+  onAddEdge: (source: string, target: string, weight: number) => void
+  onSetStartNode: (nodeId: string) => void
+  onSetEndNode: (nodeId: string) => void
+  onFindPath: () => void
+  onClear: () => void
+  onNext: () => void
+  onPrevious: () => void
+  isAnimating: boolean
+  currentStep: number
+  totalSteps: number
+  onLoadExample: (graphIndex: number) => void
+  startNodeId: string | null
+  endNodeId: string | null
+  path: string[]
+  distances: Map<string, number>
+  onAutoPlay: () => void
+  isAutoPlaying: boolean
 }
 
 export function DijkstraControls({
@@ -64,25 +52,25 @@ export function DijkstraControls({
   onAutoPlay,
   isAutoPlaying,
 }: DijkstraControlsProps) {
-  const [sourceNode, setSourceNode] = useState("");
-  const [targetNode, setTargetNode] = useState("");
-  const [weight, setWeight] = useState("");
+  const [sourceNode, setSourceNode] = useState("")
+  const [targetNode, setTargetNode] = useState("")
+  const [weight, setWeight] = useState("")
 
   const handleAddEdge = () => {
-    const weightNum = Number(weight);
+    const weightNum = Number(weight)
     if (sourceNode && targetNode && !isNaN(weightNum)) {
-      onAddEdge(sourceNode, targetNode, weightNum);
-      setSourceNode("");
-      setTargetNode("");
-      setWeight("");
+      onAddEdge(sourceNode, targetNode, weightNum)
+      setSourceNode("")
+      setTargetNode("")
+      setWeight("")
     }
-  };
+  }
 
   const getTotalDistance = () => {
-    if (path.length === 0) return null;
-    const lastNode = path[path.length - 1];
-    return distances.get(lastNode);
-  };
+    if (path.length === 0) return null
+    const lastNode = path[path.length - 1]
+    return distances.get(lastNode)
+  }
 
   return (
     <Card className="w-full h-[800px] overflow-y-auto">
@@ -105,9 +93,7 @@ export function DijkstraControls({
                   <CardDescription>Load a predefined graph</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Select
-                    onValueChange={(value) => onLoadExample(Number(value))}
-                  >
+                  <Select onValueChange={(value) => onLoadExample(Number(value))}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select an example" />
                     </SelectTrigger>
@@ -134,10 +120,8 @@ export function DijkstraControls({
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <Button
-                      onClick={() =>
-                        onAddNode(Math.random() * 500, Math.random() * 300)
-                      }
+                    <Button 
+                      onClick={() => onAddNode(Math.random() * 500, Math.random() * 300)}
                       className="w-full"
                     >
                       Add Random Node
@@ -177,16 +161,12 @@ export function DijkstraControls({
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm">Find Shortest Path</CardTitle>
-                <CardDescription>
-                  Set start/end nodes and find path
-                </CardDescription>
+                <CardDescription>Set start/end nodes and find path</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      Start Node
-                    </label>
+                    <label className="text-sm font-medium mb-2 block">Start Node</label>
                     <Input
                       key="start-node"
                       defaultValue={startNodeId ?? ""}
@@ -195,9 +175,7 @@ export function DijkstraControls({
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      End Node
-                    </label>
+                    <label className="text-sm font-medium mb-2 block">End Node</label>
                     <Input
                       key="end-node"
                       defaultValue={endNodeId ?? ""}
@@ -230,11 +208,7 @@ export function DijkstraControls({
                       disabled={currentStep >= totalSteps - 1}
                       variant="outline"
                     >
-                      {isAutoPlaying ? (
-                        <Pause className="w-4 h-4" />
-                      ) : (
-                        <Play className="w-4 h-4" />
-                      )}
+                      {isAutoPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                     </Button>
                     <Button
                       onClick={onNext}
@@ -264,20 +238,17 @@ export function DijkstraControls({
                         </span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium">
-                          Total Distance:
-                        </span>
+                        <span className="text-sm font-medium">Total Distance:</span>
                         <span className="font-mono text-sm">
-                          {getTotalDistance() === Infinity
-                            ? "∞"
-                            : getTotalDistance()}
+                          {getTotalDistance() === Infinity ? "∞" : getTotalDistance()}
                         </span>
                       </div>
                     </div>
                     <div className="text-xs text-muted-foreground">
-                      {path.length === 1
-                        ? "Click 'Find Shortest Path' to start"
-                        : `Found path with ${path.length - 1} edges`}
+                      {path.length === 1 
+                        ? "Click 'Find Shortest Path' to start" 
+                        : `Found path with ${path.length - 1} edges`
+                      }
                     </div>
                   </>
                 ) : (
@@ -292,7 +263,11 @@ export function DijkstraControls({
 
         <Separator className="my-4" />
 
-        <Button variant="destructive" onClick={onClear} className="w-full">
+        <Button 
+          variant="destructive" 
+          onClick={onClear}
+          className="w-full"
+        >
           Clear Graph
         </Button>
 
@@ -303,5 +278,5 @@ export function DijkstraControls({
         )}
       </CardContent>
     </Card>
-  );
-}
+  )
+} 

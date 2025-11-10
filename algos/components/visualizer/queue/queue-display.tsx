@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import { QueueNode } from "./types";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { QueueNode } from "./types"
+import { motion, AnimatePresence } from "framer-motion"
+import { ArrowRight } from "lucide-react"
+import { Card } from "@/components/ui/card"
 
 interface QueueDisplayProps {
-  queue: QueueNode[];
-  highlightedIndex: number | null;
+  queue: QueueNode[]
+  highlightedIndex: number | null
 }
 
 export function QueueDisplay({ queue, highlightedIndex }: QueueDisplayProps) {
@@ -39,26 +39,21 @@ export function QueueDisplay({ queue, highlightedIndex }: QueueDisplayProps) {
                     key={node.id}
                     layout
                     initial={{ opacity: 0, x: 100, scale: 0.8 }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
+                    animate={{ 
+                      opacity: 1, 
+                      x: 0, 
                       scale: 1,
-                      backgroundColor:
-                        highlightedIndex === node.index
-                          ? "hsl(var(--primary))"
-                          : "hsl(var(--muted))",
+                      backgroundColor: highlightedIndex === node.index 
+                        ? 'hsl(var(--primary))' 
+                        : 'hsl(var(--muted))',
                     }}
                     exit={{ opacity: 0, x: -100, scale: 0.8 }}
                     transition={{ duration: 0.3 }}
                     className="flex-shrink-0 w-20 h-20 rounded-md flex items-center justify-center border border-border"
                   >
-                    <span
-                      className={`text-lg font-mono ${
-                        highlightedIndex === node.index
-                          ? "text-primary-foreground"
-                          : ""
-                      }`}
-                    >
+                    <span className={`text-lg font-mono ${
+                      highlightedIndex === node.index ? 'text-primary-foreground' : ''
+                    }`}>
                       {node.value}
                     </span>
                   </motion.div>
@@ -74,5 +69,5 @@ export function QueueDisplay({ queue, highlightedIndex }: QueueDisplayProps) {
         </div>
       </div>
     </Card>
-  );
-}
+  )
+} 

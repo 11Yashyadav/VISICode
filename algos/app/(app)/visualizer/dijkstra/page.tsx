@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { DijkstraVisualizer } from "@/components/visualizer/dijkstra/dijkstra-visualizer";
+import { DijkstraVisualizer } from "@/components/visualizer/dijkstra/dijkstra-visualizer"
 
 const content = `
 # Dijkstra's Algorithm
@@ -22,8 +22,8 @@ Dijkstra's algorithm is a graph search algorithm that solves the single-source s
 - Handles weighted edges
 - Guarantees optimal solution for non-negative weights
 - Widely used in routing and networking applications
-`;
+`
 
 export default function DijkstraPage() {
-  return <DijkstraVisualizer content={content} />;
-}
+  return <DijkstraVisualizer content={content} />
+} 

@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useState } from "react";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from "react"
 
 interface QueueControlsProps {
-  onEnqueue: (value: number) => void;
-  onDequeue: () => void;
-  onClear: () => void;
-  isAnimating: boolean;
-  isFull: boolean;
-  isEmpty: boolean;
+  onEnqueue: (value: number) => void
+  onDequeue: () => void
+  onClear: () => void
+  isAnimating: boolean
+  isFull: boolean
+  isEmpty: boolean
 }
 
 export function QueueControls({
@@ -22,15 +22,15 @@ export function QueueControls({
   isFull,
   isEmpty,
 }: QueueControlsProps) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("")
 
   const handleEnqueue = () => {
-    const num = Number(value);
+    const num = Number(value)
     if (!isNaN(num)) {
-      onEnqueue(num);
-      setValue("");
+      onEnqueue(num)
+      setValue("")
     }
-  };
+  }
 
   return (
     <Card className="bg-card/50 backdrop-blur-sm">
@@ -44,24 +44,27 @@ export function QueueControls({
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="Enter value"
-            onKeyDown={(e) => e.key === "Enter" && !isFull && handleEnqueue()}
+            onKeyDown={(e) => e.key === 'Enter' && !isFull && handleEnqueue()}
             disabled={isAnimating || isFull}
             className="flex-1"
           />
-          <Button onClick={handleEnqueue} disabled={isAnimating || isFull}>
+          <Button 
+            onClick={handleEnqueue}
+            disabled={isAnimating || isFull}
+          >
             Enqueue
           </Button>
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <Button
+          <Button 
             onClick={onDequeue}
             disabled={isAnimating || isEmpty}
             variant="secondary"
           >
             Dequeue
           </Button>
-          <Button
+          <Button 
             onClick={onClear}
             disabled={isAnimating || isEmpty}
             variant="destructive"
@@ -71,5 +74,5 @@ export function QueueControls({
         </div>
       </CardContent>
     </Card>
-  );
-}
+  )
+} 

@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useState } from "react";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from "react"
 
 interface StackControlsProps {
-  onPush: (value: number) => void;
-  onPop: () => void;
-  onClear: () => void;
-  isAnimating: boolean;
-  isFull: boolean;
-  isEmpty: boolean;
+  onPush: (value: number) => void
+  onPop: () => void
+  onClear: () => void
+  isAnimating: boolean
+  isFull: boolean
+  isEmpty: boolean
 }
 
 export function StackControls({
@@ -22,15 +22,15 @@ export function StackControls({
   isFull,
   isEmpty,
 }: StackControlsProps) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("")
 
   const handlePush = () => {
-    const num = Number(value);
+    const num = Number(value)
     if (!isNaN(num)) {
-      onPush(num);
-      setValue("");
+      onPush(num)
+      setValue("")
     }
-  };
+  }
 
   return (
     <Card className="bg-card/50 backdrop-blur-sm">
@@ -44,24 +44,27 @@ export function StackControls({
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="Enter value"
-            onKeyDown={(e) => e.key === "Enter" && !isFull && handlePush()}
+            onKeyDown={(e) => e.key === 'Enter' && !isFull && handlePush()}
             disabled={isAnimating || isFull}
             className="flex-1"
           />
-          <Button onClick={handlePush} disabled={isAnimating || isFull}>
+          <Button 
+            onClick={handlePush}
+            disabled={isAnimating || isFull}
+          >
             Push
           </Button>
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <Button
+          <Button 
             onClick={onPop}
             disabled={isAnimating || isEmpty}
             variant="secondary"
           >
             Pop
           </Button>
-          <Button
+          <Button 
             onClick={onClear}
             disabled={isAnimating || isEmpty}
             variant="destructive"
@@ -71,5 +74,5 @@ export function StackControls({
         </div>
       </CardContent>
     </Card>
-  );
-}
+  )
+} 

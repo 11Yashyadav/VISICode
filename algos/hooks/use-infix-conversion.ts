@@ -70,7 +70,7 @@ export function useInfixConversion() {
       
       if (token.type === 'operand') {
         output.push(token)
-        addStep(stack, output, token, i, Add operand ${token.value} to output)
+        addStep(stack, output, token, i, `Add operand ${token.value} to output`)
       }
       else if (token.type === 'operator') {
         while (stack.length > 0 && 
@@ -78,30 +78,30 @@ export function useInfixConversion() {
                hasHigherPrecedence(stack[stack.length - 1].value as Operator, token.value as Operator)) {
           const operator = stack.pop()!
           output.push(operator)
-          addStep(stack, output, token, i, Pop operator ${operator.value} from stack to output)
+          addStep(stack, output, token, i, `Pop operator ${operator.value} from stack to output`)
         }
         stack.push(token)
-        addStep(stack, output, token, i, Push operator ${token.value} to stack)
+        addStep(stack, output, token, i, `Push operator ${token.value} to stack`)
       }
       else if (token.value === '(') {
         stack.push(token)
-        addStep(stack, output, token, i, Push opening parenthesis to stack)
+        addStep(stack, output, token, i, `Push opening parenthesis to stack`)
       }
       else if (token.value === ')') {
         while (stack.length > 0 && stack[stack.length - 1].value !== '(') {
           const operator = stack.pop()!
           output.push(operator)
-          addStep(stack, output, token, i, Pop operator ${operator.value} from stack to output)
+          addStep(stack, output, token, i, `Pop operator ${operator.value} from stack to output`)
         }
         if (stack.length > 0) stack.pop() // Remove '('
-        addStep(stack, output, token, i, Remove opening parenthesis from stack)
+        addStep(stack, output, token, i, `Remove opening parenthesis from stack`)
       }
     }
     
     while (stack.length > 0) {
       const operator = stack.pop()!
       output.push(operator)
-      addStep(stack, output, undefined, tokens.length, Pop remaining operator ${operator.value} from stack to output)
+      addStep(stack, output, undefined, tokens.length, `Pop remaining operator ${operator.value} from stack to output`)
     }
     
     setResult(output)
@@ -114,4 +114,4 @@ export function useInfixConversion() {
     result,
     convert
   }
-}
+} 
