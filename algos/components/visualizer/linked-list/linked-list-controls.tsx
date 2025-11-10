@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { useState } from "react"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState } from "react";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 interface LinkedListControlsProps {
-  onInsertFront: (value: number) => void
-  onInsertBack: (value: number) => void
-  onDeleteFront: () => void
-  onDeleteBack: () => void
-  onReverse: () => void
-  isAnimating: boolean
-  isEmpty: boolean
+  onInsertFront: (value: number) => void;
+  onInsertBack: (value: number) => void;
+  onDeleteFront: () => void;
+  onDeleteBack: () => void;
+  onReverse: () => void;
+  isAnimating: boolean;
+  isEmpty: boolean;
 }
 
 export function LinkedListControls({
@@ -26,20 +26,20 @@ export function LinkedListControls({
   isAnimating,
   isEmpty,
 }: LinkedListControlsProps) {
-  const [value, setValue] = useState("")
-  const [insertAtFront, setInsertAtFront] = useState(true)
+  const [value, setValue] = useState("");
+  const [insertAtFront, setInsertAtFront] = useState(true);
 
   const handleInsert = () => {
-    const num = Number(value)
+    const num = Number(value);
     if (!isNaN(num)) {
       if (insertAtFront) {
-        onInsertFront(num)
+        onInsertFront(num);
       } else {
-        onInsertBack(num)
+        onInsertBack(num);
       }
-      setValue("")
+      setValue("");
     }
-  }
+  };
 
   return (
     <Card className="bg-card/50 backdrop-blur-sm">
@@ -56,6 +56,12 @@ export function LinkedListControls({
               checked={insertAtFront}
               onCheckedChange={setInsertAtFront}
               disabled={isAnimating}
+              className="
+    data-[state=checked]:bg-black
+    dark:data-[state=checked]:bg-white
+    data-[state=unchecked]:bg-gray-300
+    dark:data-[state=unchecked]:bg-gray-600
+  "
             />
           </div>
           <div className="flex gap-2">
@@ -64,11 +70,11 @@ export function LinkedListControls({
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="Enter value"
-              onKeyDown={(e) => e.key === 'Enter' && handleInsert()}
+              onKeyDown={(e) => e.key === "Enter" && handleInsert()}
               disabled={isAnimating}
               className="flex-1"
             />
-            <Button 
+            <Button
               onClick={handleInsert}
               disabled={isAnimating || !value.trim()}
             >
@@ -79,14 +85,14 @@ export function LinkedListControls({
 
         {/* Delete Controls */}
         <div className="grid grid-cols-2 gap-2">
-          <Button 
+          <Button
             onClick={onDeleteFront}
             disabled={isAnimating || isEmpty}
             variant="secondary"
           >
             Delete Front
           </Button>
-          <Button 
+          <Button
             onClick={onDeleteBack}
             disabled={isAnimating || isEmpty}
             variant="secondary"
@@ -96,7 +102,7 @@ export function LinkedListControls({
         </div>
 
         {/* Reverse Control */}
-        <Button 
+        <Button
           onClick={onReverse}
           disabled={isAnimating || isEmpty}
           className="w-full"
@@ -106,5 +112,5 @@ export function LinkedListControls({
         </Button>
       </CardContent>
     </Card>
-  )
-} 
+  );
+}
